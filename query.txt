@@ -1,0 +1,39 @@
+select distinct
+s1.name,
+s1.locusId as 'locus_id',
+Taxonomy.name as organism,
+geneName as gene_name,
+Description.description as gene_description,
+cogInfoId as cog_info_id,
+COGInfo.description as cog_description,
+funCode as fun_code,
+COGFun.description as fun_code_description,
+COGFun.funGroup as fun_code_group,
+TIGRroles.description as tigr_description,
+term.acc as go_id,
+term.name as go_name,
+term.term_type as go_type,
+Locus2Go.evidence as go_evidence,
+Locus2Ipr.iprId as ipr_id,
+IPRInfo.iprName as ipr_name,
+s2.name as synonym,
+SynonymType.description as synonym_description
+from Synonym s1
+left join COG using(locusId)
+left join COGInfo using(cogInfoId)
+left join COGFun using(funCode)
+left join Description using(locusId)
+left join Locus2Domain l2d using(locusId)
+left join TIGRInfo tigr on l2d.domainId=tigr.tigrId
+left join TIGRroles using(roleId)
+left join Locus2Ipr using(locusId)
+left join IPRInfo using(iprId)
+left join Synonym s2 using(locusId)
+left join SynonymType on s2.type = SynonymType.type
+left join Taxonomy using(taxonomyId)
+left join Locus using(locusId)
+left join LocusType on Locus.type = LocusType.type
+left join AASeq using(locusId)
+left join Locus2Go using(LocusId)
+left join term on term.id = Locus2Go.goID
+where s1.name in (INSERT_GENE_LIST);
