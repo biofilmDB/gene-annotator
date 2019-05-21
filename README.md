@@ -14,7 +14,7 @@ The gene-annotator is written in python3 that takes a list of genes and returns 
 * Create the conda environment
     * conda env create -f environment.yml 
 * run: 
-        python3 driver.py your-gene-list-name.txt desired-output-file-name.csv
+        python driver.py your-gene-list-name.txt desired-output-file-name.csv
 
         
 ## Issues
@@ -24,3 +24,6 @@ The gene-annotator is written in python3 that takes a list of genes and returns 
                         mysql -h pub.microbesonline.org -u guest -pguest genomics
         * [Instructions to whitelist your IP](http://www.microbesonline.org/programmers.html#connectsql)
     * ConnectionResetError: [Errno 104] Connection reset by peer
+
+## Contact
+If you have any suggestions please contact [britney.gibbs@student.montana.edu](mailto:britney.gibbs@student.montana.edu)
